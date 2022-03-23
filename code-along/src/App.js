@@ -1,7 +1,18 @@
 import "./App.css";
 import writers from "./writers";
-
+import { useEffect, useState } from "react";
 function App() {
+  const [writers, setWriters] = useState([]);
+
+  useEffect(() => {
+    const getwriters = async () => {
+      const response = await fetch("/writers.json");
+      const data = await response.json();
+      setWriters(data);
+    };
+    getwriters();
+  }, []);
+
   return (
     <div className="App">
       <h1>Writer Profiles.</h1>
