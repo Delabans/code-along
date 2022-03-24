@@ -1,9 +1,17 @@
 import "./App.css";
-import writers from "./writers";
+//import writers from "./writers";
+import ProfileCard from "./ProfileCard";
 import { useEffect, useState } from "react";
-function App() {
-  const [writers, setWriters] = useState([]);
 
+
+function App() {
+  const [data, unsetdata, setWriters] = useState([
+    writers[],
+    loading: false,
+  ]);
+const handleClick = () => {
+
+}
   useEffect(() => {
     const getwriters = async () => {
       const response = await fetch("/writers.json");
@@ -13,7 +21,7 @@ function App() {
     getwriters();
   }, []);
 
-  return (
+  return {(
     <div className="App">
       <h1>Writer Profiles.</h1>
       <div className="container">
@@ -29,12 +37,22 @@ function App() {
               <h3>{writer.name}</h3>
               <p>{writer.email}</p>
               <p>{writer.phone}</p>
+
+              if (data.loading) {
+                <div>
+                  <h1>writer Profiles</h1>
+                  <div className="container">
+                    <div className="card action">
+                      <p className="infoText">Loading....</p>
+              ))
+              )}
+</div>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
+        
+      
+    
+    
+        
+            
 export default App;
