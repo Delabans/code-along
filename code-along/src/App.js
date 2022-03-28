@@ -1,58 +1,31 @@
-import "./App.css";
-//import writers from "./writers";
-import ProfileCard from "./ProfileCard";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import ProfileCard from './component/ProfileCard'
+import ProfileForm from "./component/ProfileForm";
 
 function App() {
-  const [data, unsetdata, setWriters] = useState([
-    writers[],
-    loading: false,
+  const [allProfile, setAllProfile] = useState([
+    {
+      firstName: "Emmanuel",
+      lastName: "Bans",
+      email: "delabans8@gmail.com",
+    },
   ]);
-const handleClick = () => {
 
-}
-  useEffect(() => {
-    const getwriters = async () => {
-      const response = await fetch("/writers.json");
-      const data = await response.json();
-      setWriters(data);
-    };
-    getwriters();
-  }, []);
+  const submit = (profile) => {
+    setAllProfile((state) => [profile, ...state]);
+  };
 
-  return {(
-    <div className="App">
-      <h1>Writer Profiles.</h1>
+  return (
+    <div>
+      <h1>Write Profiles</h1>
       <div className="container">
-        {writers.map((writer) => (
-          <div className="card">
-            <img
-              src={`/images/${writer.avatar}.png`}
-              alt=""
-              width="100%"
-              height="300px"
-            />
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
+        <ProfileForm submit={submit} />
+        {allProfile.map((writer) => (
+          <ProfileCard writer={writer} key={writer.id} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
-              if (data.loading) {
-                <div>
-                  <h1>writer Profiles</h1>
-                  <div className="container">
-                    <div className="card action">
-                      <p className="infoText">Loading....</p>
-              ))
-              )}
-</div>
-            </div>
-          </div>
-        
-      
-    
-    
-        
-            
 export default App;
